@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Python API + 内置 Web 前端；访问宿主机已有的 Redis/MySQL。
+  python-agent:
+    build:
+      context: ./python-impl
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./python-impl/.env
+    environment:
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=6379
+      - REDIS_DB=2
+      - SQL_DB_HOST=host.docker.internal
+      - SQL_DB_PORT=3306
+      - RAG_DB_PATH=/app/data/rag.sqlite3
+      - FAISS_INDEX_PATH=/app/data/faiss
+      - LANGCHAIN_TRACING_V2=false
+      - LANGSMITH_TRACING=false
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./python-impl/data:/app/data

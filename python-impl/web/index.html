@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <title>知答 · 智能客服</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="知答首页"><span class="brand-mark">知</span><span><b>知答</b><small>智能客服</small></span></a>
+      <div class="side-label">服务</div>
+      <button class="nav-item active"><span class="nav-icon">◉</span>在线咨询</button>
+      <div class="chat-history"><div class="chat-history-title">最近对话</div><div id="chat-history-list"></div></div>
+      <div class="sidebar-bottom"><span class="status-dot"></span><span>客服助手在线</span><span class="version">SUPPORT</span></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><div class="eyebrow">CUSTOMER SUPPORT</div><h1>在线咨询</h1></div>
+        <div class="top-actions"><span class="api-status" id="api-status"><i></i>正在连接</span><button class="avatar" title="客服">CS</button></div>
+      </header>
+
+      <section class="page chat-page">
+        <div class="chat-layout">
+          <div class="conversation-panel">
+            <div class="conversation-head"><div><strong>智能客服助手</strong><span class="muted">描述你的问题，我们会为你安排合适的服务</span></div><button id="new-chat" class="button button-quiet">＋ 新对话</button></div>
+            <div id="messages" class="messages">
+              <div class="welcome-card"><div class="welcome-icon">✳</div><h2>你好，有什么可以帮你？</h2><p>系统会根据你的问题选择对应的客服流程；查询政策和业务资料时，会展示参考来源。</p><div class="suggestions"><button data-prompt="退款申请的流程和时限是什么？">退款政策</button><button data-prompt="开户需要准备什么材料？">开户流程</button><button data-prompt="帮我创建一个售后工单">创建工单</button></div></div>
+            </div>
+            <form id="chat-form" class="composer"><textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送…" required></textarea><div class="composer-footer"><div class="composer-hint">需要时会检索相关资料并附上来源</div><button class="send-button" type="submit" aria-label="发送">↑</button></div></form>
+          </div>
+          <aside class="chat-context">
+            <div class="context-heading"><div><span class="eyebrow">SERVICE</span><h3>问题处理</h3></div><span class="context-glyph">✧</span></div>
+            <div class="tip-card"><span class="tip-star">✧</span><div><b>由客服 Agent 处理</b><p>系统会先识别问题类型，再交给对应流程。知识类问题才会检索资料。</p></div></div>
+            <div class="context-divider"></div>
+            <div class="context-note"><span>资料与隐私</span><b>原始文件保存在服务端</b><small>回答只展示相关来源与片段</small></div>
+            <div id="source-list" class="source-list"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="source-modal" class="modal hidden"><div class="modal-card source-modal-card"><button id="source-close" class="modal-close">×</button><span class="eyebrow">SOURCE EXCERPT</span><h2 id="source-title">参考片段</h2><div id="source-content" class="source-content"></div></div></div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>
